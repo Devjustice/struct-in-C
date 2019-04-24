@@ -4,8 +4,8 @@
 typedef struct student
 {
 char name[30];
-char weight[30];
-char hight[30];
+int weight;
+int hight;
 
 }student;
 void View(student *p,int n);
@@ -60,7 +60,7 @@ int i;
     printf("========================================\n");
     for(i=0;i<n;i++)
     {
-        printf("%s\t%s\t%s\n",p[i].name,p[i].weight,p[i].hight);
+          printf("%s\t%d\t%d\n",p[i].name,(p+i)->weight,(p+i)->hight);
         printf("========================================\n");
     }
 
@@ -72,7 +72,7 @@ int i,j;
 student temp;
 for(i=0;i<n-1;i++){
 for(j=0;j<n-i-1;j++)
-{if(p[j].hight<p[j+1].hight){temp=p[j];p[j]=p[j+1];p[j+1]=temp;}
+{if((p+j)->hight > (p+(j+1))->hight){temp=p[j];p[j]=p[j+1];p[j+1]=temp;}
 }
 
 }
@@ -85,7 +85,7 @@ for(j=0;j<n-i-1;j++)
     printf("========================================\n");
     for(i=0;i<n;i++)
     {
-        printf("%s\t%s\t%s\n",p[i].name,p[i].weight,p[i].hight);
+        printf("%s\t%d\t%d\n",p[i].name,(p+i)->weight,(p+i)->hight);
         printf("========================================\n");
     }
 
@@ -101,7 +101,7 @@ int i,j;
 student temp;
 for(i=0;i<n-1;i++){
 for(j=0;j<n-i-1;j++)
-{if(p[j].weight<p[j+1].weight){temp=p[j];p[j]=p[j+1];p[j+1]=temp;}
+{if((p+j)->weight > (p+(j+1))->weight){temp=p[j];p[j]=p[j+1];p[j+1]=temp;}
 }
 
 }
@@ -114,9 +114,10 @@ for(j=0;j<n-i-1;j++)
     printf("========================================\n");
     for(i=0;i<n;i++)
     {
-        printf("%s\t%s\t%s\n",p[i].name,p[i].weight,p[i].hight);
+        printf("%s\t%d\t%d\n",p[i].name,(p+i)->weight,(p+i)->hight);
         printf("========================================\n");
     }
+
 }
 
 
@@ -125,7 +126,7 @@ for(j=0;j<n-i-1;j++)
 
 
 void View(student *p,int n){
-
+int wei,hei;
     
 	int i;
 for(i=0;i<n;i++)
@@ -133,16 +134,18 @@ for(i=0;i<n;i++)
         printf("이름을 입력하세요: ");
         scanf("%s",p[i].name);
         printf("몸무게를 입력하세요: ");
-        scanf("%s",p[i].weight);
+       scanf("%d", &wei);		
+		(p+i)->weight=wei;
 	printf("키를 입력하세요: ");
-        scanf("%s",p[i].hight);
+        scanf("%d", &hei);		
+		(p+i)->hight=hei;
     }
     printf("========================================\n");
     printf("이름\t몸무게\t키\n");
     printf("========================================\n");
     for(i=0;i<n;i++)
     {
-        printf("%s\t%s\t%s\n",p[i].name,p[i].weight,p[i].hight);
+          printf("%s\t%d\t%d\n",p[i].name,(p+i)->weight,(p+i)->hight);
         printf("========================================\n");
     }
 
@@ -151,7 +154,3 @@ for(i=0;i<n;i++)
 int comparisonFunctionString(const void *a, const void *b) {
   return( strcmp( (char *)a, (char *)b) );
 }
-
-
-
-
