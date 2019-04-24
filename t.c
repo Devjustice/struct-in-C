@@ -9,9 +9,9 @@ char hight[30];
 int final;
 }student;
 void View(student *p,int n);
-void Namesort(student *p,int n);
-void Hsort(student *p,int n);
-void Wsort(student *p,int n);
+student Namesort(student *p,int n);
+student Hsort(student *p,int n);
+student Wsort(student *p,int n);
 int comparisonFunctionString(const void *a, const void *b);
 int main(void)
 {
@@ -32,9 +32,9 @@ p=(student*)calloc(count,sizeof(student));
  else   {
         printf("메모리가할당되었습니다\n");
     }
-View(p,count);
-printf("이름오름차순정렬하려면 1\n몸무게오름차순정렬하려면 2\n 키오름차순정렬하려면 3\n");
-scanf("%d",&ipt);
+View(p,count);while(1){
+printf("이름오름차순정렬하려면 1\n몸무게오름차순정렬하려면 2\n 키오름차순정렬하려면 3\nEXIT -1 ");
+scanf("%d",&ipt);if(ipt==-1){main();}
 switch(ipt)
 {
 case 1: { Namesort(p,count);break;}
@@ -42,7 +42,7 @@ case 2: { Wsort(p,count); break;}
 case 3: { Hsort(p,count);break;}
 default: { break;}
 }
- 
+ }
    free(p);
     return 0;
 }
@@ -50,7 +50,7 @@ default: { break;}
 
 
 
-void Namesort(student *p,int n){
+student Namesort(student *p,int n){
 
 int i;
   qsort((void *)p, n, sizeof(p[0]), comparisonFunctionString);
@@ -64,11 +64,10 @@ int i;
         printf("========================================\n");
     }
 
-
+return *p;
 }
 
-
-void Hsort(student *p,int n){
+student Hsort(student *p,int n){
 
 int i,ii;
 int temp;
@@ -97,14 +96,14 @@ int temp;
         printf("========================================\n");
     }
 
-
+return *p;
 
 }
 
 
 
 
-void Wsort(student *p,int n){
+student Wsort(student *p,int n){
 
 int i,ii;
 int temp;
@@ -134,7 +133,7 @@ int temp;
     }
 
 
-
+return *p;
 }
 
 
