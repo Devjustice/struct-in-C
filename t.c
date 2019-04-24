@@ -6,12 +6,12 @@ typedef struct student
 char name[30];
 char weight[30];
 char hight[30];
-int final;
+
 }student;
 void View(student *p,int n);
-student Namesort(student *p,int n);
-student Hsort(student *p,int n);
-student Wsort(student *p,int n);
+void Namesort(student *p,int n);
+void Hsort(student *p,int n);
+void Wsort(student *p,int n);
 int comparisonFunctionString(const void *a, const void *b);
 int main(void)
 {
@@ -50,7 +50,7 @@ default: { break;}
 
 
 
-student Namesort(student *p,int n){
+void Namesort(student *p,int n){
 
 int i;
   qsort((void *)p, n, sizeof(p[0]), comparisonFunctionString);
@@ -64,65 +64,22 @@ int i;
         printf("========================================\n");
     }
 
-return *p;
 }
 
-student Hsort(student *p,int n){
+void Hsort(student *p,int n){
 
-int i,ii;
-int temp;
-  
-
- 
-    for(i = 0; i < n; i++)
-    {
-        for(ii = 0; (ii + i) < n; ii++)
-        {
-            if(p->hight > p->hight+ii)
-            {
-                temp = p->hight[ii];
-                p->hight[ii] = p->hight[ii+1];
-                p->hight[ii+1] = temp;
-            }
-        }
-    }
- 
-  printf("========================================\n");
-    printf("이름\t몸무게\t키\n");
-    printf("========================================\n");
-    for(i=0;i<n;i++)
-    {
-        printf("%s\t%s\t%s\n",p[i].name,p[i].weight,p[i].hight);
-        printf("========================================\n");
-    }
-
-return *p;
+int i,j;
+student temp;
+for(i=0;i<n-1;i++){
+for(j=0;j<n-i-1;j++)
+{if(p[j].hight<p[j+1].hight){temp=p[j];p[j]=p[j+1];p[j+1]=temp;}
+}
 
 }
 
 
 
 
-student Wsort(student *p,int n){
-
-int i,ii;
-int temp;
-  
-
- 
-    for(i = 0; i < n; i++)
-    {
-        for(ii = 0; (ii + i) < n; ii++)
-        {
-            if(p->weight > p->weight+ii)
-            {
-                temp = p->weight[ii];
-                p->weight[ii] = p->weight[ii+1];
-                p->weight[ii+1] = temp;
-            }
-        }
-    }
- 
   printf("========================================\n");
     printf("이름\t몸무게\t키\n");
     printf("========================================\n");
@@ -133,7 +90,33 @@ int temp;
     }
 
 
-return *p;
+}
+
+
+
+
+void Wsort(student *p,int n){
+
+int i,j;
+student temp;
+for(i=0;i<n-1;i++){
+for(j=0;j<n-i-1;j++)
+{if(p[j].weight<p[j+1].weight){temp=p[j];p[j]=p[j+1];p[j+1]=temp;}
+}
+
+}
+
+
+
+
+  printf("========================================\n");
+    printf("이름\t몸무게\t키\n");
+    printf("========================================\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%s\t%s\t%s\n",p[i].name,p[i].weight,p[i].hight);
+        printf("========================================\n");
+    }
 }
 
 
@@ -168,10 +151,6 @@ for(i=0;i<n;i++)
 int comparisonFunctionString(const void *a, const void *b) {
   return( strcmp( (char *)a, (char *)b) );
 }
-
-
-
-
 
 
 
